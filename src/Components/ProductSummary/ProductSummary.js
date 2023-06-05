@@ -1,5 +1,5 @@
 import React from 'react';
-import './Product.css'
+import '../Products/Product.css'
 
 const Products = (props) => {
     const {handleAddToCart} = props
@@ -15,7 +15,7 @@ const Products = (props) => {
                 <p className='rating'><small>Rating: {ratings}</small></p>
                 <p><small>Quantity: {quantity}</small></p>
             </div>
-            <button onClick={() => handleAddToCart(props.data)} className="add-to-cart">Add to Cart</button>
+            <button onClick={() => handleAddToCart(props.data)} className="remove-from-cart">Remove From Cart</button>
         </div>
     );
 };

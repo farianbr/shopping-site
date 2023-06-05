@@ -1,5 +1,5 @@
 .add-to-cart{
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     bottom: 0px;
     height: 48px;
@@ -12,12 +12,27 @@
     background: orange;
 }
 
+.remove-from-cart{
+    color: white;
+    width: 100%;
+    bottom: 0px;
+    height: 48px;
+    background: #FF3030;
+    border: 1px solid #95A0A7;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.remove-from-cart:hover{
+    background: rgba(180, 9, 9, 0.76);;
+}
+
 .product-container{
     position: relative;
     box-sizing: border-box;
+    height: fit-content;
     width: 300px;
     margin: 25px;
-    height: 508px;
+    /* height: 508px; */
     border: 1px solid #95A0A7;
     border-radius: 8px;
 }

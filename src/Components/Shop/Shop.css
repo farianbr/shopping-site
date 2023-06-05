@@ -2,7 +2,7 @@
     display: flex;
     justify-content:space-between;
     /* position: relative; */
-    margin-top: 80px;
+    /* margin-top: 80px; */
 }
 
 .products-container{
@@ -20,7 +20,10 @@
     /* position: relative; */
     height: 100%;
     /* float: right; */
-    position: fixed;
+    /* position: fixed; */
+    position: sticky;
+    top: 0px;
+    height: 1000px;
     right: 0px;
     background: #FFE0B3;
     padding: 20px;

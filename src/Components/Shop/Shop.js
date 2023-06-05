@@ -65,7 +65,7 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    console.log("hello from local storage");
+    // console.log("hello from local storage");
     localStorage.setItem("cartLength", JSON.stringify(cart));
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     localStorage.setItem(
@@ -86,27 +86,29 @@ const Shop = () => {
   //   }, []);
 
   return (
-    <div className="shop-container">
-      <div className="products-container">
-        {products.map((product) => (
-          <Products
-            key={product.id}
-            data={product}
-            handleAddToCart={handleAddToCart}
-          ></Products>
-        ))}
+    <>
+      <div className="shop-container">
+        <div className="products-container">
+          {products.map((product) => (
+            <Products
+              key={product.id}
+              data={product}
+              handleAddToCart={handleAddToCart}
+            ></Products>
+          ))}
+        </div>
+        <div className="order-summary">
+          <h1>Order Summary </h1>
+          <p>Selected items: {cart.length}</p>
+          <p>Price: ${totalPrice}</p>
+          <p>Total Shipping Charge: ${totalShippingCharge}</p>
+          <h3>Grand Total: ${totalPrice + totalShippingCharge}</h3>
+          <button onClick={clearCart} className="clear-cart">
+            Clear Cart
+          </button>
+        </div>
       </div>
-      <div className="order-summary">
-        <h1>Order Summary </h1>
-        <p>Selected items: {cart.length}</p>
-        <p>Price: ${totalPrice}</p>
-        <p>Total Shipping Charge: ${totalShippingCharge}</p>
-        <h3>Grand Total: ${totalPrice + totalShippingCharge}</h3>
-        <button onClick={clearCart} className="clear-cart">
-          Clear Cart
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 
