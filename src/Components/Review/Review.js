@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import ProductSummary from "../ProductSummary/ProductSummary";
 import "./Review.css";
 
@@ -13,21 +13,21 @@ const Review = () => {
 //   ];
 // //   setCart(uniqueCart)
 
-  console.log("this is cart", cart);
 
   const handleAddToCart = (props) => {
-    // console.log("this is props", props);
     const newCart = cart.filter((product) => product.id !== props.id);
-    // console.log("this is newCart", newCart);
     setCart(newCart);
+    const totalPrice = newCart.reduce((total,price) => {return total = total+(price.quantity*price.price)},0)
+    const shippingCharge = newCart.reduce((total,price) => {return total = total+(price.quantity*price.shipping)},0)
     localStorage.setItem("cartLength", JSON.stringify(newCart));
-    // console.log("this is after set cart", cart);
-    // console.log("this is after set newCart", newCart);
+    localStorage.setItem("totalPrice", totalPrice)
+    localStorage.setItem("totalShippingCharge",shippingCharge)
   };
 
   return (
     <div className="shop-container">
       <div className="review-container">
+        {cart.length===0 && <h1 className="no-products">No Products! Please shop <Link to="/shop">here</Link></h1>}
         {cart.map((product) => (
           <ProductSummary
             key={product.id}

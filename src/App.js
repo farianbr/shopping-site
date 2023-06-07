@@ -13,6 +13,7 @@ function App() {
       children: [
         {
           path: '/',
+          loader: async () => {return fetch("https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json")},
           element: <Shop></Shop>
         },
         {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Shop.css";
 import Products from "../Products/Products";
+import { uniqueCart } from "../Functionalities/functionalities";
+import { useLoaderData } from "react-router-dom";
 
 const getLocalCartLength = () => {
   let cartLengthDb = localStorage.getItem("cartLength");
@@ -30,29 +32,62 @@ const getLocalTotalShippingCharge = () => {
   }
 };
 
+const getProducts = async () => {
+  // const res = await fetch("https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json")
+  // const data = await res.json()
+  
+  // return data  
+}
+
 const Shop = () => {
+  // const data = useLoaderData()
+  
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(getLocalCartLength());
   const [totalPrice, setTotalPrice] = useState(getLocalTotalPrice());
   const [totalShippingCharge, setTotalShippingCharge] = useState(
     getLocalTotalShippingCharge()
   );
-
+  
+  console.log(products);
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json"
     )
       .then((data) => data.json())
-      .then((res) => setProducts(res));
-  }, []);
+      .then((res) => {
+        for(let i=0;i < cart.length;i++){
+          res.map(item => {
+            if(item.id === cart[i].id){
+              item.quantity = cart[i].quantity
+            }
+          })
+        }
+        setProducts(res)
+      });
+  }, [cart]);
 
   const handleAddToCart = (props) => {
-    // console.log(props);
-    const newCart = [...cart, props];
-    setCart(newCart);
-    // console.log(props.price);
-    // console.log(totalPrice);
-    setTotalPrice(totalPrice + props.price);
+    
+    let newCart = []
+
+    const exists = cart.find(item => item.id ===  props.id)
+
+    if(!exists){
+      props.quantity = 1
+      newCart = [...cart, props]
+    }
+    else{
+      const rest = cart.filter(item => item.id !== props.id)
+      exists.quantity = exists.quantity + 1
+      newCart = [...rest,exists]
+    }
+    
+    setCart(newCart)
+
+    const price = cart.reduce((total,price) => {return total = total+(price.quantity*price.price)},0)
+
+    setTotalPrice(price);
     setTotalShippingCharge(totalShippingCharge + props.shipping);
   };
 
@@ -65,7 +100,6 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    // console.log("hello from local storage");
     localStorage.setItem("cartLength", JSON.stringify(cart));
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     localStorage.setItem(
