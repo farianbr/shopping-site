@@ -83,10 +83,10 @@ const Shop = () => {
       newCart = [...rest,exists]
     }
     
-    setCart(newCart)
-
+    
     const price = cart.reduce((total,price) => {return total = total+(price.quantity*price.price)},0)
-
+    
+    setCart(newCart)
     setTotalPrice(price);
     setTotalShippingCharge(totalShippingCharge + props.shipping);
   };
