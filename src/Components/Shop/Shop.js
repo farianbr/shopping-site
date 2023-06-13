@@ -49,7 +49,7 @@ const Shop = () => {
     getLocalTotalShippingCharge()
   );
   
-  console.log(products);
+  // console.log(products);
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json"
@@ -84,11 +84,12 @@ const Shop = () => {
     }
     
     
-    const price = cart.reduce((total,price) => {return total = total+(price.quantity*price.price)},0)
+    const price = newCart.reduce((total,price) => {return total = total+(price.quantity*price.price)},0)
     
     setCart(newCart)
     setTotalPrice(price);
     setTotalShippingCharge(totalShippingCharge + props.shipping);
+    console.log("this is cart",cart,"this is new cart",newCart);
   };
 
   //   localStorage.setItem("price", 2333);
