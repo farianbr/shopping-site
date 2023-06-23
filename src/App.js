@@ -4,6 +4,10 @@ import Shop from './Components/Shop/Shop';
 import Review from './Components/Review/Review';
 import Main from './Components/Layout/Main';
 import { savedCartLoader } from './Components/loaders/savedCartLoader';
+import Payment from './Components/Payment/Payment';
+import Login from './Components/Login/Login';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Register from './Components/Register/Register';
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +27,18 @@ function App() {
           path: '/orders',
           loader: savedCartLoader,
           element: <Review/>
+        },
+        {
+          path: '/payment',
+          element: <Payment></Payment>
+        },
+        {
+          path: '/login',
+          element: <Login></Login>
+        },
+        {
+          path: '/register',
+          element: <Register></Register>
         },
       ]
     }

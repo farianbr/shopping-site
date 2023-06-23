@@ -52,3 +52,17 @@
 .clear-cart:hover{
     background: rgba(180, 9, 9, 0.76);
 }
+
+.btn-review-order{
+    width: 100%;
+    height: 48px;
+    background: rgba(30, 206, 24,1);
+    border-radius: 4px;
+    border: none;
+    color: white;
+    margin-top: 40px;
+}
+
+.btn-review-order:hover{
+    background: rgb(22, 165, 17);
+}

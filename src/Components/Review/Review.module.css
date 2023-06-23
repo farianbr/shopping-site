@@ -1,0 +1,52 @@
+.shopContainer{
+    display: flex;
+    justify-content:space-between;
+    
+}
+
+.reviewContainer{
+    display: flex;
+    /* justify-content:space-between; */
+    flex-wrap: wrap;
+}
+.orderReview{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 30%;
+    /* border: 1px solid black; */
+    /* position: relative; */
+    /* height: 100%; */
+    /* float: right; */
+    /* position: fixed; */
+    position: sticky;
+    top: 0px;
+    height: calc(100vh - 80px);
+    right: 0px;
+    background: #FFE0B3;
+    padding: 20px;
+}
+
+.noProducts{
+    text-align: center;
+    /* margin: auto; */
+    /* margin-top: 200px;    */
+}
+
+.orderReview a{
+    text-align: center;
+}
+
+.btnPayment{
+    width: 50%;
+    height: 48px;
+    background: rgb(42, 10, 184);
+    border-radius: 4px;
+    border: none;
+    color: white;
+    margin-top: 40px;
+}
+
+.btnPayment:hover{
+    background: rgb(23, 6, 100);
+}
