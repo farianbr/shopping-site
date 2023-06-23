@@ -1,13 +1,15 @@
 .shopContainer{
     display: flex;
     justify-content:space-between;
-    
+    height: calc(100vh - 80px);
 }
 
 .reviewContainer{
     display: flex;
     /* justify-content:space-between; */
     flex-wrap: wrap;
+    width: 70%;
+    overflow-y: auto;
 }
 .orderReview{
     display: flex;
@@ -21,10 +23,12 @@
     /* position: fixed; */
     position: sticky;
     top: 0px;
-    height: calc(100vh - 80px);
+    /* height: calc(100vh - 80px); */
+    flex: 1;
     right: 0px;
     background: #FFE0B3;
     padding: 20px;
+    overflow: hidden;
 }
 
 .noProducts{

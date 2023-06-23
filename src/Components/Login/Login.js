@@ -18,16 +18,15 @@ const Login = () => {
         event.preventDefault()
         setEmail(event.target.formBasicEmail.value)
         setPassword(event.target.formBasicPassword.value)
-        console.log(email,password)
+        // console.log(email,password)
         
         signInWithEmailAndPassword(auth,email,password)
         .then(userCredential => {
-          console.log(userCredential);
+        //   console.log(userCredential);
           setSuccess(true)
           setError("")
         })
         .catch(error => {
-          console.log(error.message);
           setError(error.message)
           setSuccess(false)
         })

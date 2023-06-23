@@ -22,6 +22,6 @@ export const savedCartLoader = async () => {
     })
  
 
-  console.log(cart);
+  // console.log(cart);
   return uniqueCart
 };

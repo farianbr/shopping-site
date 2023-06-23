@@ -11,6 +11,7 @@
     /* overflow: hidden; */
     z-index: 999;
     top: 0px;
+    /* transition: top 0.3s ease-in-out; */
     /* margin-bottom: 80px; */
 }
 

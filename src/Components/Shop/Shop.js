@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Shop.css";
 import Products from "../Products/Products";
-<<<<<<< Updated upstream
-=======
-import { uniqueCart } from "../Functionalities/functionalities";
-import { Link, useLoaderData } from "react-router-dom";
->>>>>>> Stashed changes
+import { Link } from "react-router-dom";
 
-const getLocalCartLength = () => {
+export const getLocalCartLength = () => {
   let cartLengthDb = localStorage.getItem("cartLength");
 
   if (cartLengthDb) {
@@ -41,29 +37,25 @@ const Shop = () => {
   const [totalPrice, setTotalPrice] = useState(getLocalTotalPrice());
   const [totalShippingCharge, setTotalShippingCharge] = useState(
     getLocalTotalShippingCharge()
-<<<<<<< Updated upstream
-  );
-
-=======
   )
->>>>>>> Stashed changes
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json"
     )
       .then((data) => data.json())
-      .then((res) => setProducts(res));
-  }, []);
+      .then((res) => {
+        for(let i=0;i < cart.length;i++){
+          res.map(item => {
+            if(item.id === cart[i].id){
+              item.quantity = cart[i].quantity
+            }
+          })
+        }
+        setProducts(res)
+      });
+  }, [cart]);
 
   const handleAddToCart = (props) => {
-<<<<<<< Updated upstream
-    // console.log(props);
-    const newCart = [...cart, props];
-    setCart(newCart);
-    // console.log(props.price);
-    // console.log(totalPrice);
-    setTotalPrice(totalPrice + props.price);
-=======
     
     let newCart = []
 
@@ -84,13 +76,11 @@ const Shop = () => {
     
     setCart(newCart)
     setTotalPrice(price);
->>>>>>> Stashed changes
     setTotalShippingCharge(totalShippingCharge + props.shipping);
 
+    console.log(newCart);
 
   };
-
-  //   localStorage.setItem("price", 2333);
 
   const clearCart = () => {
     setCart([]);
@@ -99,25 +89,14 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    // console.log("hello from local storage");
     localStorage.setItem("cartLength", JSON.stringify(cart));
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     localStorage.setItem(
       "totalShippingCharge",
       JSON.stringify(totalShippingCharge)
     );
-  }, [cart, totalPrice, totalShippingCharge]);
-
-  //   useEffect(() => {
-  //     // const cartLengthDb = JSON.parse(localStorage.getItem("cartLength"));
-  //     // setCart(cartLengthDb);
-  //     const totalPriceDb = JSON.parse(localStorage.getItem("totalPrice"));
-  //     setTotalPrice(totalPriceDb);
-  //     const totalShippingChargeDb = JSON.parse(
-  //       localStorage.getItem("totalShippingCharge")
-  //     );
-  //     setTotalShippingCharge(totalShippingChargeDb);
-  //   }, []);
+  }, [cart, totalPrice, totalShippingCharge])
+  
 
   return (
     <>
@@ -134,7 +113,7 @@ const Shop = () => {
         <div className="order-summary">
           <h1>Order Summary </h1>
           {/* <p>Selected items: {cart.length}</p> */}
-          {    console.log("this is from shop", cart)}
+          {/* {    console.log("this is from shop", cart)} */}
           <p>Selected items: {cart.reduce((prev,curr) => {return prev = curr.quantity+prev},0)}</p>
           <p>Price: ${totalPrice}</p>
           <p>Total Shipping Charge: ${totalShippingCharge}</p>

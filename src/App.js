@@ -25,7 +25,6 @@ function App() {
         },
         {
           path: '/orders',
-          loader: savedCartLoader,
           element: <Review/>
         },
         {
