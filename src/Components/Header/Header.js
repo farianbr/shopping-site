@@ -19,7 +19,7 @@ const Header = () => {
                 <Link to="/orders">Order Review</Link>    
                 <Link to="/payment">Payment</Link>  
                 
-                <Link to="/register">Register</Link>  
+                {!currentUser && <Link to="/register">Register</Link>}  
                 <div className='ms-5 pe-2 border rounded avatar-container'>
                     {currentUser? <img className='img-avatar' alt='' src={avatar}></img> : <img className='img-avatar' alt='' src={noAvatar}></img>}
                     <span className='ms-2 text-white'>{currentUser?.email}</span>

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../contexts/UserContext";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -11,6 +12,9 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
 
   const {createUserWithEmail, continueWithGoogle} = useContext(AuthContext)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/shop'
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -30,6 +34,7 @@ const Register = () => {
         setName("")
         setEmail("")
         setPassword("")
+        navigate(from, {replace: true})
       })
       .catch((error) => {
         // console.log("this is error", error.message);
@@ -45,6 +50,7 @@ const Register = () => {
     continueWithGoogle()
       .then((result) => {
         setSuccess(true);
+        navigate(from, {replace: true})
         // console.log(result.user);
       })
       .catch((err) => {
@@ -72,6 +78,8 @@ const Register = () => {
         </Form.Group>
         {success && <p className="text-success">Registered Successfully!</p>}
         {error !== "" && <p className="text-danger">{error}</p>}
+
+        
 
         <Button variant="primary" type="submit" className="w-50">
           Register

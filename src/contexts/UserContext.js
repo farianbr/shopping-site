@@ -8,14 +8,17 @@ const provider = new GoogleAuthProvider();
 
 const UserContext = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user && user !== currentUser) {
               setCurrentUser(user)
+              setLoading(false)
               console.log(currentUser);
             } else {
               setCurrentUser(null)
+              setLoading(false)
             }
           });
 
@@ -39,7 +42,7 @@ const UserContext = ({children}) => {
         return signOut(auth)
     }
 
-    const authInfo = {currentUser, createUserWithEmail, continueWithGoogle, signInUserWithEmail, logOut}
+    const authInfo = {currentUser,loading, createUserWithEmail, continueWithGoogle, signInUserWithEmail, logOut}
 
     return (
         <AuthContext.Provider value={authInfo}>

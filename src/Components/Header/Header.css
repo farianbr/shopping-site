@@ -31,6 +31,7 @@
 
 .nav-links a:last-child{
     margin-left: 4px;
+    margin-right: 4px;
 }
 
 .nav-links a:hover{

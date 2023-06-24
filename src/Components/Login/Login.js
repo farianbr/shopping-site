@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { AuthContext } from "../../contexts/UserContext";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,7 +9,10 @@ const Login = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const {continueWithGoogle, signInUserWithEmail} = useContext(AuthContext)
+  const {continueWithGoogle, signInUserWithEmail, loading} = useContext(AuthContext)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/shop'
 
   const handleLogIn = (event) => {
     setSuccess(false);
@@ -24,6 +28,7 @@ const Login = () => {
         setError("");
         setEmail("")
         setPassword("")
+        navigate(from, {replace: true})
       })
       .catch((error) => {
         setError(error.message);
@@ -38,6 +43,7 @@ const Login = () => {
       .then((result) => {
         setSuccess(true);
         setError("");
+        navigate(from, {replace: true})
         // console.log(result.user);
       })
       .catch((err) => {
@@ -72,6 +78,8 @@ const Login = () => {
 
         {success && <p className="text-success">Logged in Successfully!</p>}
         {error !== "" && <p className="text-danger">{error}</p>}
+
+        <span className="d-block"><small>New to ema-john?</small> <Link to='/register'><small>register here</small></Link> </span>
 
         <Button variant="primary" type="submit">
           Log In

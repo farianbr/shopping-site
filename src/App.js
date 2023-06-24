@@ -6,6 +6,7 @@ import Payment from './Components/Payment/Payment';
 import Login from './Components/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './Components/Register/Register';
+import PrivateRoute from './Components/Layout/PrivateRoute';
 
 function App() {
   const router = createBrowserRouter([
@@ -27,7 +28,7 @@ function App() {
         },
         {
           path: '/payment',
-          element: <Payment></Payment>
+          element: <PrivateRoute><Payment></Payment></PrivateRoute>
         },
         {
           path: '/login',
