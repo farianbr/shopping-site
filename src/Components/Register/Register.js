@@ -1,16 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
-import { app } from "../../firebase/firebase.init";
-
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+import { AuthContext } from "../../contexts/UserContext";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -18,6 +9,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const {createUserWithEmail, continueWithGoogle} = useContext(AuthContext)
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -27,13 +20,16 @@ const Register = () => {
     setSuccess(false);
     setTimeout(() => console.log(name, email, password), 5000);
 
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmail(email, password)
       .then((userCredential) => {
         // console.log(userCredential.user);
         userCredential.user.displayName = name;
         event.target.reset();
         setError("");
         setSuccess(true);
+        setName("")
+        setEmail("")
+        setPassword("")
       })
       .catch((error) => {
         // console.log("this is error", error.message);
@@ -46,7 +42,7 @@ const Register = () => {
   const handleGoogleSignIn = (event) => {
     setSuccess(false);
     // console.log(event.target);
-    signInWithPopup(auth, provider)
+    continueWithGoogle()
       .then((result) => {
         setSuccess(true);
         // console.log(result.user);
@@ -55,6 +51,7 @@ const Register = () => {
         setSuccess(false);
         setError(err.message);
       });
+      
   };
   return (
     <div className="w-50 mx-auto">
@@ -84,7 +81,7 @@ const Register = () => {
           type="button"
           className="btn btn-secondary m-2"
         >
-          Register with Google
+          Continue with Google
         </button>
       </Form>
     </div>

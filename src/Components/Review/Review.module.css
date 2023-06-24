@@ -26,19 +26,24 @@
     /* height: calc(100vh - 80px); */
     flex: 1;
     right: 0px;
-    background: #FFE0B3;
+    background: #fdbe60;
     padding: 20px;
     overflow: hidden;
 }
 
 .noProducts{
     text-align: center;
-    /* margin: auto; */
+    margin: auto;
     /* margin-top: 200px;    */
 }
 
 .orderReview a{
     text-align: center;
+}
+
+.orderReview h1{
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 .btnPayment{

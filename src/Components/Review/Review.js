@@ -8,7 +8,6 @@ const Review = () => {
   const [cart, setCart] = useState(getLocalCartLength());
   const [totalCartPrice, setTotalCartPrice] = useState(getLocalTotalPrice())
   const [totalCartShippingCharge, setTotalCartShippingCharge] = useState(getLocalTotalShippingCharge())
-  console.log("this is from review", cart);
 
   const handleAddToCart = (props) => {
     const newCart = cart.filter((product) => product.id !== props.id);

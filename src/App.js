@@ -1,9 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Header from './Components/Header/Header';
 import Shop from './Components/Shop/Shop';
 import Review from './Components/Review/Review';
 import Main from './Components/Layout/Main';
-import { savedCartLoader } from './Components/loaders/savedCartLoader';
 import Payment from './Components/Payment/Payment';
 import Login from './Components/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -49,6 +49,7 @@ const Shop = () => {
             if(item.id === cart[i].id){
               item.quantity = cart[i].quantity
             }
+            return 0
           })
         }
         setProducts(res)
@@ -77,9 +78,6 @@ const Shop = () => {
     setCart(newCart)
     setTotalPrice(price);
     setTotalShippingCharge(totalShippingCharge + props.shipping);
-
-    console.log(newCart);
-
   };
 
   const clearCart = () => {
