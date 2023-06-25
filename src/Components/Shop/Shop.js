@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Shop.css";
 import Products from "../Products/Products";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/UserContext";
 
 export const getLocalCartLength = () => {
   let cartLengthDb = localStorage.getItem("cartLength");
@@ -38,6 +39,8 @@ const Shop = () => {
   const [totalShippingCharge, setTotalShippingCharge] = useState(
     getLocalTotalShippingCharge()
   )
+  const {setTotalCartLength} = useContext(AuthContext)
+
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json"
@@ -76,12 +79,14 @@ const Shop = () => {
     const price = newCart.reduce((total,price) => {return total = total+(price.quantity*price.price)},0)
     
     setCart(newCart)
+    setTotalCartLength(newCart.reduce((prev,curr) => {return prev = curr.quantity+prev},0))
     setTotalPrice(price);
     setTotalShippingCharge(totalShippingCharge + props.shipping);
   };
 
   const clearCart = () => {
     setCart([]);
+    setTotalCartLength(0)
     setTotalPrice(0);
     setTotalShippingCharge(0);
   };

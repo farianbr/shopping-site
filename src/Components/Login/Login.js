@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const {continueWithGoogle, signInUserWithEmail, loading} = useContext(AuthContext)
+  const {continueWithGoogle, signInUserWithEmail} = useContext(AuthContext)
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/shop'

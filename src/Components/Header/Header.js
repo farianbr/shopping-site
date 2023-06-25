@@ -5,17 +5,21 @@ import avatar from '../../images/avatar.png'
 import noAvatar from '../../images/no-avatar.png'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
 
-    const {currentUser, logOut} = useContext(AuthContext)
+    const {currentUser, logOut, totalCartLength} = useContext(AuthContext)
+    
     console.log(currentUser);
 
     return (
         <nav className='header'>
             <img src={logo} alt="" />
             <div className='nav-links'>
-                <Link to="/shop">Shop</Link>    
+                <Link to="/shop">Shop</Link>
+                <span className='text-white ms-2'><FontAwesomeIcon icon={faCartShopping} style={{color: "#ffffff",}} /><sup className='ms-1'>{totalCartLength}</sup></span>    
                 <Link to="/orders">Order Review</Link>    
                 <Link to="/payment">Payment</Link>  
                 

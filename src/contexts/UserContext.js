@@ -9,6 +9,7 @@ const provider = new GoogleAuthProvider();
 const UserContext = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [totalCartLength,setTotalCartLength] = useState(0)
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -42,7 +43,7 @@ const UserContext = ({children}) => {
         return signOut(auth)
     }
 
-    const authInfo = {currentUser,loading, createUserWithEmail, continueWithGoogle, signInUserWithEmail, logOut}
+    const authInfo = {currentUser,loading, createUserWithEmail, continueWithGoogle, signInUserWithEmail, logOut, totalCartLength,setTotalCartLength}
 
     return (
         <AuthContext.Provider value={authInfo}>
